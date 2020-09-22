@@ -1,0 +1,50 @@
+This document describes the currently known API endpoints for the Megacell Charger
+
+All calls to the Megacell Charger are HTTP to port 80 and to the URL http://[IP ADDRESS]/api/[function]
+
+Data must be json encoded when doing a PUT, and returned data using a GET is also in json format. 
+
+http://192.168.1.121/api/get_cells_info
+
+Returns a multi-item 'cells' json object ( up to 16 objects, but can be arbitrary ) 
+
+Each cell object consists of:
+
+CiD : cell id : integer 
+voltage : voltage : float X.YYY precision
+amps : amperage charge/drain : float XXXX.YYY precision
+capacity : measured capacity : float XXXX.YYY precision
+chargeCapacity : measured capacity while charging : float XXXX.YYYYYY precision 
+status : status text string : "mCap Started Discharging","..." {TBD more info here}
+esr : measured internal resistance : float X.YYYYYY precision
+action_length : how long the current action has been in progress ( seconds ) : XXXX.Y
+DiC : number of discharge cycles : integer
+complete_cycles : number of cycles completed : integer
+temperature : current cell external temperature : float XX.YYYYYY precision
+ChC : : binary "true"/"false"
+
+http://192.168.1.121/api/get_config_info
+
+Returns a simple json list of form - "option": value,
+
+MaV : max volage : float X.Y precision
+StV : storage voltage : float X.Y precision
+MiV : minimum cell voltage : float X.Y precision
+DiR : discharge rate : integer 300 - 1000 ( miliamps ) 
+MaT : maximum temperature : integer 20 - 50 ( centigrade )
+DiC : discharge cycles : integer 
+FwV : firmware version : Text string "Firmware V3.1.26"
+FirmwareVersion : firmware version : Text string "Firmware V3.1.26"
+ChC :
+LmV :
+LcV :
+LmD :
+LmR : 
+CcO : 
+DcO : 
+http://192.168.1.121/api/set_config_info
+
+{"max_voltage": 4.13, "store_voltage": 4.11, "min_voltage": 3.21, "discharge_rate": 1000, "discharge_cycles": 1, "max_temp": 40.0, "APName": "AP-CellDoctor", "APPass": "1234567890"}
+
+http://192.168.1.121/api/set_cell
+
