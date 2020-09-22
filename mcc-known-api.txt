@@ -15,7 +15,7 @@ voltage : voltage : float X.YYY precision
 amps : amperage charge/drain : float XXXX.YYY precision
 capacity : measured capacity : float XXXX.YYY precision
 chargeCapacity : measured capacity while charging : float XXXX.YYYYYY precision 
-status : status text string : "mCap Started Discharging","..." {TBD more info here}
+status : status text string : "mCap Started Discharging","Started Charging","Started Discharging","Cell rest 5 Min",{...}
 esr : measured internal resistance : float X.YYYYYY precision
 action_length : how long the current action has been in progress ( seconds ) : XXXX.Y
 DiC : number of discharge cycles : integer
